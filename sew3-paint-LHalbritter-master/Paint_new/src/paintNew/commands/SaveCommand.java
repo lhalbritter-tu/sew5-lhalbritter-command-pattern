@@ -42,7 +42,7 @@ public class SaveCommand extends JMenuItem implements Command {
                 Drawable[] dneu = Arrays.copyOfRange(d,0,length);
 
                 //Die brauchbaren Daten des Zeichenbretts werden in den OutputStream gespeichert
-                oos.writeObject(pc);
+                oos.writeObject(pc.getPenColor());
                 oos.writeObject(pc.getMenuPanel().z.getBackground());
 
                 oos.writeObject(dneu);

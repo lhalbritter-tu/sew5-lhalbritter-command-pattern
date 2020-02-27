@@ -10,7 +10,7 @@ import java.io.*;
 import javax.swing.*;
 
 /**
- * Controller-Klasse f�r das Zeichenbrett
+ * Controller-Klasse für das Zeichenbrett
  * 
  * @author Leo Halbritter
  * @version 2018-06-04
@@ -31,14 +31,31 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 
 	private Mode m = Mode.FREIHAND;
 	private Drawable d;
-	private Color pc = Color.BLACK;
-	private Color bg = Color.WHITE;
+	private Color penColor = Color.BLACK;
+
+	public Color getPenColor() {
+		return penColor;
+	}
+
+	public void setPenColor(Color penColor) {
+		this.penColor = penColor;
+	}
+
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public void setBackgroundColor(Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
+	}
+
+	private Color backgroundColor = Color.WHITE;
 	private Info i;
 	
 	private boolean ausmalen;
 	
 	/**
-	 * Konstruktor f�r den Controller
+	 * Konstruktor für den Controller
 	 */
 	public PaintController(){
 		pp = new MenuPanel(this);
@@ -60,108 +77,75 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Command command = (Command)e.getSource();
+		command.execute(this);
 
-		if(e.getSource() == Command.class){
-			Command command = (Command) e.getSource();
-			command.execute(this);
-		}else {
+		/**
+		//Bei den folgenden Buttons habe ich die ActionCommands ver�ndert, damit sie nicht zu lang waren (siehe Menupanel.java)
+		//Beim Button "Element l�schen" soll das letzte Element entfernt werden.
+		if (e.getActionCommand().equals("101")) pp.z.entferne();
+		//Beim Button "Element wiederherstellen" soll das letzte gel�schte Element wiederhergestellt werden.
+		if (e.getActionCommand().equals("111")) pp.z.restore();
+		//Beim Button "Element duplizieren" soll das letzte Element dupliziert werden.
+		if (e.getActionCommand().equals("121")) pp.z.duplizieren();
+		//Beim Button "Element in Home Position" soll das letzte Element so weit links oben wie m�glich gesetzt werden.
+		if (e.getActionCommand().equals("131")) pp.z.home();
+		//Beim Button "Elementfarbe �ndern" soll die Farbe des letzten Elements ge�ndert werden.
+		if (e.getActionCommand().equals("141"))
+			pp.z.changeColor(JColorChooser.showDialog(null, "Elementfarbe", null));
 
-			/**
-			 * Wenn der gedr�ckte Button "Stift" war, soll eine Auswahl erscheinen, die die
-			 * Stiftfarbe �ndert.
-			 */
-			if (e.getActionCommand().equals("Stift")) {
-				this.pc = JColorChooser.showDialog(null, "Stiftfarbe", null);
-				pp.setPenColor(this.pc);
-			}
-			/**
-			 * Wenn der gedr�ckte Button "Hintergrund" war, soll eine Auswahl erscheinen, die die
-			 * Hintergrundfarbe �ndert.
-			 */
-			if (e.getActionCommand().equals("Hintergrund")) {
-				this.bg = JColorChooser.showDialog(null, "Hintergrundfarbe", null);
-				pp.setBgColor(this.bg);
-				pp.z.setzeHintergrund(this.bg);
-			}
-			//*Debug* System.out.println(e.getActionCommand());
-			//Bei "Speichern" soll der Speichervorgang begonnen werden.
-			if (e.getActionCommand().equals("Speichern...")) this.speichern();
-			//Bei "Laden" soll der Ladevorgang begonnen werden.
-			if (e.getActionCommand().equals("Laden...")) this.laden();
-			//Bei "Neu" soll das Zeichenbrett geleert werden.
-			if (e.getActionCommand().equals("Neu")) {
-				pp.z.reset();
-				pp.setPenColor(Color.WHITE);
-				pp.setBgColor(Color.WHITE);
-				this.pc = Color.BLACK;
-				this.bg = Color.WHITE;
-			}
-
-			//Bei den folgenden Buttons habe ich die ActionCommands ver�ndert, damit sie nicht zu lang waren (siehe Menupanel.java)
-			//Beim Button "Element l�schen" soll das letzte Element entfernt werden.
-			if (e.getActionCommand().equals("101")) pp.z.entferne();
-			//Beim Button "Element wiederherstellen" soll das letzte gel�schte Element wiederhergestellt werden.
-			if (e.getActionCommand().equals("111")) pp.z.restore();
-			//Beim Button "Element duplizieren" soll das letzte Element dupliziert werden.
-			if (e.getActionCommand().equals("121")) pp.z.duplizieren();
-			//Beim Button "Element in Home Position" soll das letzte Element so weit links oben wie m�glich gesetzt werden.
-			if (e.getActionCommand().equals("131")) pp.z.home();
-			//Beim Button "Elementfarbe �ndern" soll die Farbe des letzten Elements ge�ndert werden.
-			if (e.getActionCommand().equals("141"))
-				pp.z.changeColor(JColorChooser.showDialog(null, "Elementfarbe", null));
-
-			//Bei diesen Button-Interaktionen wird ausgew�hlt wie gezeichnet werden soll.
-			if (e.getActionCommand().equals("0")) {
-				m = Mode.FREIHAND;
-				ausmalen = false;
-			}
-			if (e.getActionCommand().equals("1")) {
-				m = Mode.LINIEN;
-				ausmalen = false;
-			}
-			if (e.getActionCommand().equals("2")) {
-				m = Mode.RECHTECK;
-				ausmalen = false;
-			}
-			if (e.getActionCommand().equals("3")) {
-				m = Mode.RUNDECK;
-				ausmalen = false;
-			}
-			if (e.getActionCommand().equals("4")) {
-				m = Mode.ELLIPSEN;
-				ausmalen = false;
-			}
-			if (e.getActionCommand().equals("5")) {
-				m = Mode.POLYGONE;
-				ausmalen = false;
-			}
-			if (e.getActionCommand().equals("6")) {
-				m = Mode.RECHTECK;
-				ausmalen = true;
-			}
-			if (e.getActionCommand().equals("7")) {
-				m = Mode.RUNDECK;
-				ausmalen = true;
-			}
-			if (e.getActionCommand().equals("8")) {
-				m = Mode.ELLIPSEN;
-				ausmalen = true;
-			}
-			;
-			if (e.getActionCommand().equals("9")) {
-				m = Mode.POLYGONE;
-				ausmalen = true;
-			}
-			;
-			if (e.getActionCommand().equals("10")) {
-				m = Mode.VERSCHIEBEN;
-			}
-			;
-
-			//Wenn About gedr�ckt wird soll ein neues Fenster ge�ffnet werden, welches die Infos �ber dieses Programm anzeigt.
-			if (e.getActionCommand().equals("About"))
-				pf[1] = new PaintFrame(i, "Informationen", JFrame.DISPOSE_ON_CLOSE);
+		//Bei diesen Button-Interaktionen wird ausgew�hlt wie gezeichnet werden soll.
+		if (e.getActionCommand().equals("0")) {
+			m = Mode.FREIHAND;
+			ausmalen = false;
 		}
+		if (e.getActionCommand().equals("1")) {
+			m = Mode.LINIEN;
+			ausmalen = false;
+		}
+		if (e.getActionCommand().equals("2")) {
+			m = Mode.RECHTECK;
+			ausmalen = false;
+		}
+		if (e.getActionCommand().equals("3")) {
+			m = Mode.RUNDECK;
+			ausmalen = false;
+		}
+		if (e.getActionCommand().equals("4")) {
+			m = Mode.ELLIPSEN;
+			ausmalen = false;
+		}
+		if (e.getActionCommand().equals("5")) {
+			m = Mode.POLYGONE;
+			ausmalen = false;
+		}
+		if (e.getActionCommand().equals("6")) {
+			m = Mode.RECHTECK;
+			ausmalen = true;
+		}
+		if (e.getActionCommand().equals("7")) {
+			m = Mode.RUNDECK;
+			ausmalen = true;
+		}
+		if (e.getActionCommand().equals("8")) {
+			m = Mode.ELLIPSEN;
+			ausmalen = true;
+		}
+		;
+		if (e.getActionCommand().equals("9")) {
+			m = Mode.POLYGONE;
+			ausmalen = true;
+		}
+		;
+		if (e.getActionCommand().equals("10")) {
+			m = Mode.VERSCHIEBEN;
+		}
+		;
+
+		//Wenn About gedr�ckt wird soll ein neues Fenster ge�ffnet werden, welches die Infos �ber dieses Programm anzeigt.
+		if (e.getActionCommand().equals("About"))
+			pf[1] = new PaintFrame(i, "Informationen", JFrame.DISPOSE_ON_CLOSE);
+		 */
 	}
 
 	/**
@@ -213,27 +197,27 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	@Override
 	public void mousePressed(MouseEvent e) {
 		switch(m){
-		case FREIHAND: d = new Freihand(this.pc);
+		case FREIHAND: d = new Freihand(this.penColor);
 		d.p.addPoint(e.getX(), e.getY());
 		pp.z.hinzufuegen(d);
 		break;
-		case LINIEN: d = new Linie(this.pc);
+		case LINIEN: d = new Linie(this.penColor);
 		d.p.xpoints[0] = e.getX();
 		d.p.ypoints[0] = e.getY();
 		d.p.xpoints[1] = e.getX();
 		d.p.ypoints[1] = e.getY();
 		pp.z.hinzufuegen(d);
 		break;
-		case RECHTECK: d = new Rechteck(this.pc);
+		case RECHTECK: d = new Rechteck(this.penColor);
 		pp.z.hinzufuegen(d);
 		break;
-		case RUNDECK: d = new Rundeck(this.pc);
+		case RUNDECK: d = new Rundeck(this.penColor);
 		pp.z.hinzufuegen(d);
 		break;
-		case ELLIPSEN: this.d = new Ellipse(this.pc);
+		case ELLIPSEN: this.d = new Ellipse(this.penColor);
 		pp.z.hinzufuegen(d);
 		break;
-		case POLYGONE: this.d = new PPolygon(this.pc);
+		case POLYGONE: this.d = new PPolygon(this.penColor);
 		pp.z.hinzufuegen(d);
 		break;
 		default:
@@ -276,7 +260,7 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 		 			Drawable[] dneu = Arrays.copyOfRange(d,0,length);
 		 
 		 			//Die brauchbaren Daten des Zeichenbretts werden in den OutputStream gespeichert
-		 			oos.writeObject(pc);
+		 			oos.writeObject(penColor);
 		 			oos.writeObject(pp.z.getBackground());
 		 
 		 			oos.writeObject(dneu);
