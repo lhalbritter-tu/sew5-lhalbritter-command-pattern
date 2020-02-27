@@ -1,14 +1,11 @@
-package paint;
+package paintNew;
 import javax.swing.*;
 
-import paint.PaintController.Mode;
-
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
- * Das Panel auf dem gezeichnet wird, für das Zeichenbrett
+ * Das Panel auf dem gezeichnet wird, fï¿½r das Zeichenbrett
  * 
  * @author Leo Halbritter
  * @version 2018-06-04
@@ -16,13 +13,13 @@ import java.util.ArrayList;
 public class Zeichenbrett extends JPanel {
 	
 	//Attribute
-	//Arraylist für die gezeichneten Elemente
+	//Arraylist fï¿½r die gezeichneten Elemente
 	private ArrayList<Drawable> d = new ArrayList<Drawable>();
-	//Arraylist zum Wiederherstellen gelöschter Elemente
+	//Arraylist zum Wiederherstellen gelï¿½schter Elemente
 	private ArrayList<Drawable> r = new ArrayList<Drawable>();
 	
 	/**
-	 * Konstruktor für das Zeichenbrett
+	 * Konstruktor fï¿½r das Zeichenbrett
 	 */
 	public Zeichenbrett(){
 		this.setBackground(Color.WHITE);
@@ -42,7 +39,7 @@ public class Zeichenbrett extends JPanel {
 	}
 	
 	/**
-	 * Fügt ein neues Drawable-Element hinzu
+	 * Fï¿½gt ein neues Drawable-Element hinzu
 	 * 
 	 * @param d das neue Drawable-Element
 	 */
@@ -52,7 +49,7 @@ public class Zeichenbrett extends JPanel {
 	}
 	
 	/**
-	 * Stellt das zuletzt gelöschte Drawable-Element wieder her
+	 * Stellt das zuletzt gelï¿½schte Drawable-Element wieder her
 	 */
 	public void restore(){
 		if(this.r != null){
@@ -63,7 +60,7 @@ public class Zeichenbrett extends JPanel {
 	}
 	
 	/**
-	 * Fügt einen Punkt zum gerade gezeichneten Element hinzu
+	 * Fï¿½gt einen Punkt zum gerade gezeichneten Element hinzu
 	 * 
 	 * @param x x-Koordinate
 	 * @param y y-Koordinate
@@ -100,7 +97,7 @@ public class Zeichenbrett extends JPanel {
 	}
 	
 	/**
-	 * Ändert die Farbe des letzten Drawable-Elements
+	 * ï¿½ndert die Farbe des letzten Drawable-Elements
 	 * 
 	 * @param c die neue Farbe
 	 */
@@ -127,7 +124,7 @@ public class Zeichenbrett extends JPanel {
 	}
 	
 	/**
-	 * Setzt das Füllen des Drawable-Elements auf true
+	 * Setzt das Fï¿½llen des Drawable-Elements auf true
 	 */
 	public void setFill(){
 		this.d.get(d.size()-1).setFill(true);
@@ -135,7 +132,7 @@ public class Zeichenbrett extends JPanel {
 	}
 	
 	/**
-	 * Gibt die Drawable-Liste als Array zurück
+	 * Gibt die Drawable-Liste als Array zurï¿½ck
 	 * 
 	 * @return das Drawable-Array
 	 */

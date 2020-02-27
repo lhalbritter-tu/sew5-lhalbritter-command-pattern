@@ -1,4 +1,4 @@
-package paint;
+package paintNew;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,7 +8,7 @@ import java.io.*;
 import javax.swing.*;
 
 /**
- * Controller-Klasse für das Zeichenbrett
+ * Controller-Klasse fï¿½r das Zeichenbrett
  * 
  * @author Leo Halbritter
  * @version 2018-06-04
@@ -27,7 +27,7 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	private boolean ausmalen;
 	
 	/**
-	 * Konstruktor für den Controller
+	 * Konstruktor fï¿½r den Controller
 	 */
 	public PaintController(){
 		pp = new MenuPanel(this);
@@ -45,21 +45,21 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	}
 
 	/**
-	 * Methode, die dafür sorgt, dass alle Aktionen für die Menüleiste funktionieren
+	 * Methode, die dafï¿½r sorgt, dass alle Aktionen fï¿½r die Menï¿½leiste funktionieren
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		/**
-		 * Wenn der gedrückte Button "Stift" war, soll eine Auswahl erscheinen, die die
-		 * Stiftfarbe ändert.
+		 * Wenn der gedrï¿½ckte Button "Stift" war, soll eine Auswahl erscheinen, die die
+		 * Stiftfarbe ï¿½ndert.
 		 */
 		if(e.getActionCommand().equals("Stift")){
 			this.pc = JColorChooser.showDialog(null, "Stiftfarbe", null);
 			pp.setPenColor(this.pc);
 		}
 		/**
-		 * Wenn der gedrückte Button "Hintergrund" war, soll eine Auswahl erscheinen, die die
-		 * Hintergrundfarbe ändert.
+		 * Wenn der gedrï¿½ckte Button "Hintergrund" war, soll eine Auswahl erscheinen, die die
+		 * Hintergrundfarbe ï¿½ndert.
 		 */
 		if(e.getActionCommand().equals("Hintergrund")){
 			this.bg = JColorChooser.showDialog(null, "Hintergrundfarbe", null);
@@ -80,19 +80,19 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 			this.bg = Color.WHITE;
 		}
 		
-		//Bei den folgenden Buttons habe ich die ActionCommands verändert, damit sie nicht zu lang waren (siehe Menupanel.java)
-		//Beim Button "Element löschen" soll das letzte Element entfernt werden.
+		//Bei den folgenden Buttons habe ich die ActionCommands verï¿½ndert, damit sie nicht zu lang waren (siehe Menupanel.java)
+		//Beim Button "Element lï¿½schen" soll das letzte Element entfernt werden.
 		if(e.getActionCommand().equals("101"))pp.z.entferne();
-		//Beim Button "Element wiederherstellen" soll das letzte gelöschte Element wiederhergestellt werden.
+		//Beim Button "Element wiederherstellen" soll das letzte gelï¿½schte Element wiederhergestellt werden.
 		if(e.getActionCommand().equals("111"))pp.z.restore();
 		//Beim Button "Element duplizieren" soll das letzte Element dupliziert werden.
 		if(e.getActionCommand().equals("121"))pp.z.duplizieren();
-		//Beim Button "Element in Home Position" soll das letzte Element so weit links oben wie möglich gesetzt werden.
+		//Beim Button "Element in Home Position" soll das letzte Element so weit links oben wie mï¿½glich gesetzt werden.
 		if(e.getActionCommand().equals("131"))pp.z.home();
-		//Beim Button "Elementfarbe ändern" soll die Farbe des letzten Elements geändert werden.
+		//Beim Button "Elementfarbe ï¿½ndern" soll die Farbe des letzten Elements geï¿½ndert werden.
 		if(e.getActionCommand().equals("141"))pp.z.changeColor(JColorChooser.showDialog(null, "Elementfarbe", null));
 		
-		//Bei diesen Button-Interaktionen wird ausgewählt wie gezeichnet werden soll.
+		//Bei diesen Button-Interaktionen wird ausgewï¿½hlt wie gezeichnet werden soll.
 		if(e.getActionCommand().equals("0")){
 			m = Mode.FREIHAND;
 			ausmalen = false;
@@ -137,12 +137,12 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 			m = Mode.VERSCHIEBEN;
 		};
 		
-		//Wenn About gedrückt wird soll ein neues Fenster geöffnet werden, welches die Infos über dieses Programm anzeigt.
+		//Wenn About gedrï¿½ckt wird soll ein neues Fenster geï¿½ffnet werden, welches die Infos ï¿½ber dieses Programm anzeigt.
 		if(e.getActionCommand().equals("About"))pf[1] = new PaintFrame(i, "Informationen", JFrame.DISPOSE_ON_CLOSE);
 	}
 
 	/**
-	 * Methode die die Maus "verfolgt" und die Punkte für die entsprechenden Zeichnungen einspeichert.
+	 * Methode die die Maus "verfolgt" und die Punkte fï¿½r die entsprechenden Zeichnungen einspeichert.
 	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
@@ -244,7 +244,7 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 		 int length = d.length;
 		 int ok = JOptionPane.YES_OPTION;
 		 if (file.exists()) {
-		 		ok = JOptionPane.showConfirmDialog(pf[0], "Soll das File " + "Überschreiben werden`", "Speichern", JOptionPane.YES_NO_OPTION);		
+		 		ok = JOptionPane.showConfirmDialog(pf[0], "Soll das File " + "ï¿½berschreiben werden`", "Speichern", JOptionPane.YES_NO_OPTION);		
 		 }
 		 if (ok==JOptionPane.YES_OPTION) {
 		 		ObjectOutputStream oos = null;
@@ -279,7 +279,7 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 		 File file = null;
 		 if (fc.showOpenDialog(pp)==JFileChooser.APPROVE_OPTION) file = fc.getSelectedFile();
 		 if (file == null) {
-		 		JOptionPane.showMessageDialog(pf[0], "Kein file" + " wurde ausgewählt!");
+		 		JOptionPane.showMessageDialog(pf[0], "Kein file" + " wurde ausgewï¿½hlt!");
 		 return;
 		 }
 		 ObjectInputStream ois = null;
@@ -313,9 +313,17 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 		 pp.setBackground(bg);
 		 
 	}
-		 
+
+	public MenuPanel getMenuPanel() {
+		return pp;
+	}
+
+	public Component[] getPaintFrames() {
+		return pf;
+	}
+
 	/**
-	 * enum-Klasse für den Zeichenmodus
+	 * enum-Klasse fï¿½r den Zeichenmodus
 	 * 
 	 * @author Leo Halbritter
 	 * @version 2018-06-04

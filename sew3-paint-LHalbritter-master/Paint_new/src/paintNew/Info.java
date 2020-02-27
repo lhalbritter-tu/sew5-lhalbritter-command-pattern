@@ -1,15 +1,12 @@
-package paint;
+package paintNew;
 
 import javax.swing.*;
-import javax.swing.event.*;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import java.awt.*;
-
 /**
- * JPanel für das About
+ * JPanel fï¿½r das About
  * 
  * @author Leo Halbritter
  * @version 2018-06-04

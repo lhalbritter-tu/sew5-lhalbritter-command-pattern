@@ -1,4 +1,4 @@
-package paint;
+package paintNew;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,7 +13,7 @@ import java.awt.Polygon;
 public class Freihand extends Drawable {
 
 	/**
-	 * Konstruktor für die Freihand-Zeichenelemente
+	 * Konstruktor fï¿½r die Freihand-Zeichenelemente
 	 */
 	public Freihand(){
 		this.p = new Polygon();
@@ -21,9 +21,9 @@ public class Freihand extends Drawable {
 	}
 	
 	/**
-	 * Konstruktor für die Freihand-Zeichenelemente mit der gewünschten Farbe
+	 * Konstruktor fï¿½r die Freihand-Zeichenelemente mit der gewï¿½nschten Farbe
 	 * 
-	 * @param c die gewünschte Farbe
+	 * @param c die gewï¿½nschte Farbe
 	 */
 	public Freihand(Color c){
 		this.p = new Polygon();
@@ -31,7 +31,7 @@ public class Freihand extends Drawable {
 	}
 	
 	/**
-	 * {@link paint.Element#draw(Graphics g)}
+	 * {@link paintNew.Element#draw(Graphics g)}
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -40,7 +40,7 @@ public class Freihand extends Drawable {
 	}
 
 	/**
-	 * {@link paint.Element#clone()}
+	 * {@link paintNew.Element#clone()}
 	 */
 	@Override
 	public Element clone() {

@@ -1,4 +1,4 @@
-package paint;
+package paintNew;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,7 +6,7 @@ import java.awt.Polygon;
 import java.io.Serializable;
 
 /**
- * Klasse für alle Zeichen-Elemente
+ * Klasse fï¿½r alle Zeichen-Elemente
  * 
  * @author Leo Halbritter
  * @version 2018-06-04
@@ -20,19 +20,19 @@ public abstract class Drawable implements Element, Serializable {
 	protected boolean fill;
 	
 	/**
-	 * {@link paint.Element#draw(Graphics)}
+	 * {@link paintNew.Element#draw(Graphics)}
 	 */
 	@Override
 	public abstract void draw(Graphics g);
 
 	/**
-	 * {@link paint.Element#clone()}
+	 * {@link paintNew.Element#clone()}
 	 */
 	@Override
 	public abstract Element clone();
 
 	/**
-	 * {@link paint.Element#addPoint(int, int)}
+	 * {@link paintNew.Element#addPoint(int, int)}
 	 */
 	@Override
 	public void addPoint(int x, int y) {
@@ -40,7 +40,7 @@ public abstract class Drawable implements Element, Serializable {
 	}
 
 	/**
-	 * {@link paint.Element#removeLastPoint()}
+	 * {@link paintNew.Element#removeLastPoint()}
 	 */
 	@Override
 	public void removeLastPoint() {
@@ -48,7 +48,7 @@ public abstract class Drawable implements Element, Serializable {
 	}
 
 	/**
-	 * {@link paint.Element#setHomePosition()}
+	 * {@link paintNew.Element#setHomePosition()}
 	 */
 	@Override
 	public void setHomePosition() {
@@ -56,7 +56,7 @@ public abstract class Drawable implements Element, Serializable {
 	}
 
 	/**
-	 * {@link paint.Element#getColor()}
+	 * {@link paintNew.Element#getColor()}
 	 */
 	@Override
 	public Color getColor() {
@@ -64,7 +64,7 @@ public abstract class Drawable implements Element, Serializable {
 	}
 
 	/**
-	 * {@link paint.Element#setColor(Color c)}
+	 * {@link paintNew.Element#setColor(Color c)}
 	 */
 	@Override
 	public void setColor(Color c) {
@@ -73,9 +73,9 @@ public abstract class Drawable implements Element, Serializable {
 	}
 	
 	/**
-	 * Setzt ob das Element gefüllt werden soll
+	 * Setzt ob das Element gefï¿½llt werden soll
 	 * 
-	 * @param b true, wenn es gefüllt werden soll; false, wenn nicht
+	 * @param b true, wenn es gefï¿½llt werden soll; false, wenn nicht
 	 */
 	public void setFill(boolean b){
 		this.fill = b;

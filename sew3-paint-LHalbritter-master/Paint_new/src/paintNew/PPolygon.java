@@ -1,10 +1,10 @@
-package paint;
+package paintNew;
 
 import java.awt.Graphics;
 import java.awt.*;
 
 /**
- * Klasse für Polygon-Elemente
+ * Klasse fï¿½r Polygon-Elemente
  * 
  * @author Leo Halbritter
  * @version 2018-06-04
@@ -12,9 +12,9 @@ import java.awt.*;
 public class PPolygon extends Drawable {
 
 	/**
-	 * Konstruktor für Polygon-Elemente mit gewünschter Farbe
+	 * Konstruktor fï¿½r Polygon-Elemente mit gewï¿½nschter Farbe
 	 * 
-	 * @param c die gewünschte Farbe
+	 * @param c die gewï¿½nschte Farbe
 	 */
 	public PPolygon(Color c){
 		this.c = c;
@@ -22,7 +22,7 @@ public class PPolygon extends Drawable {
 	}
 	
 	/**
-	 * {@link paint.Element#draw(Graphics g)}
+	 * {@link paintNew.Element#draw(Graphics g)}
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -32,7 +32,7 @@ public class PPolygon extends Drawable {
 	}
 
 	/**
-	 * {@link paint.Element#clone()}
+	 * {@link paintNew.Element#clone()}
 	 */
 	@Override
 	public Element clone() {

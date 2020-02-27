@@ -1,9 +1,9 @@
-package paint;
+package paintNew;
 
 import javax.swing.*;
 
 /**
- * Frame-Klasse für das Zeichenbrett
+ * Frame-Klasse fï¿½r das Zeichenbrett
  * 
  * @author Leo Halbritter
  * @version 2018-06-04
@@ -11,10 +11,10 @@ import javax.swing.*;
 public class PaintFrame extends JFrame{
 
 	/**
-	 * Konstruktor für das Fenster
-	 * @param pp das Panel, welches hinzugefügt werden soll
+	 * Konstruktor fï¿½r das Fenster
+	 * @param pp das Panel, welches hinzugefï¿½gt werden soll
 	 * @param title der Titel des Fensters
-	 * @param operation die Operation die durchgeführt werden soll, wenn das Fenster geschlossen wird
+	 * @param operation die Operation die durchgefï¿½hrt werden soll, wenn das Fenster geschlossen wird
 	 */
 	public PaintFrame(JPanel pp, String title, int operation){
 		this.add(pp);

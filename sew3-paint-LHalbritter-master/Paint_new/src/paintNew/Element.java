@@ -1,4 +1,4 @@
-package paint;
+package paintNew;
 /**
  * Basis-Interface fuer alle Zeichenobjekte
  */
@@ -25,7 +25,7 @@ public interface Element  {
 	 */
 	public abstract Element clone();
 	/**
-	 * Einen neuen Punkt hinzufügen<br>
+	 * Einen neuen Punkt hinzufï¿½gen<br>
 	 * Einige Zeichenmethoden benoetigen mehrere Punkte:<br>
 	 * z.b.: Freihand, Line (Start- und Endpunkt),...
 	 * wird auch fuer die Methode setHomePosition benoetigt

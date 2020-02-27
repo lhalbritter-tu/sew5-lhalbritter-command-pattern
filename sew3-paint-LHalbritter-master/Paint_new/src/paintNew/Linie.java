@@ -1,4 +1,4 @@
-package paint;
+package paintNew;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,9 +13,9 @@ import java.awt.Polygon;
 public class Linie extends Drawable {
 
 	/**
-	 * Konstruktor für Linien-Elemente
+	 * Konstruktor fï¿½r Linien-Elemente
 	 * 
-	 * @param c die gewünschte Farbe
+	 * @param c die gewï¿½nschte Farbe
 	 */
 	public Linie(Color c){
 		this.p = new Polygon();
@@ -23,7 +23,7 @@ public class Linie extends Drawable {
 	}
 	
 	/**
-	 * {@link paint.Element#draw(Graphics g)}
+	 * {@link paintNew.Element#draw(Graphics g)}
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -33,7 +33,7 @@ public class Linie extends Drawable {
 	}
 
 	/**
-	 * {@link paint.Element#clone()}
+	 * {@link paintNew.Element#clone()}
 	 */
 	@Override
 	public Element clone() {

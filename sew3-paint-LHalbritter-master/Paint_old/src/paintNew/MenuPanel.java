@@ -1,4 +1,4 @@
-package paint;
+package paintNew;
 
 import javax.swing.*;
 
@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
- * Die Panel-Klasse für die Menüleiste des Zeichenbretts (beinhaltet auch das eigentliche
+ * Die Panel-Klasse fï¿½r die Menï¿½leiste des Zeichenbretts (beinhaltet auch das eigentliche
  * Zeichenbrett)
  * 
  * @author Leo Halbritter
@@ -19,22 +19,22 @@ public class MenuPanel extends JPanel {
 	//public damit der Controller Zugriff darauf hat
 	public Zeichenbrett z;
 	
-    // Menüleiste
+    // Menï¿½leiste
     private JMenuBar m;
     
-    // Menüleisten-Elemente
+    // Menï¿½leisten-Elemente
     private JMenu datei, bearbeiten, zeichnen, farbe, info;
     
-    // Menüleisten-Subelemente
+    // Menï¿½leisten-Subelemente
     private JMenuItem[] dItems, bItems, zItems, fItems;
     private JMenuItem about;
     
 
 	
     /**
-     * Konstruktor für das Panel
+     * Konstruktor fï¿½r das Panel
      * 
-     * @param pc der Controller, der für den ActionListener/MouseListener zuständig ist
+     * @param pc der Controller, der fï¿½r den ActionListener/MouseListener zustï¿½ndig ist
      */
 	public MenuPanel(PaintController pc){
         
@@ -44,24 +44,24 @@ public class MenuPanel extends JPanel {
 		zItems = new JMenuItem[11];
 		fItems = new JMenuItem[2];
 		
-        // Menüleiste erzeugen
+        // Menï¿½leiste erzeugen
         m = new JMenuBar();
         
-        // Menüelemente erzeugen
+        // Menï¿½elemente erzeugen
         datei = new JMenu("Datei");
         bearbeiten = new JMenu("Bearbeiten");
         zeichnen = new JMenu("Zeichnen");
         farbe = new JMenu("Farbe");
         info = new JMenu("Info");
         
-        // Menüelemente hinzufügen
+        // Menï¿½elemente hinzufï¿½gen
         m.add(datei);
         m.add(bearbeiten);
         m.add(zeichnen);
         m.add(farbe);
         m.add(info);
         
-        // Untermenüelemente hinzufügen
+        // Untermenï¿½elemente hinzufï¿½gen
         dItems[0] = new JMenuItem("Neu");
         dItems[0].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         dItems[1] = new JMenuItem("Laden...");
@@ -73,14 +73,14 @@ public class MenuPanel extends JPanel {
         	dItems[i].addActionListener(pc);
         }
         
-        bItems[0] = new JMenuItem("Element löschen");
+        bItems[0] = new JMenuItem("Element lï¿½schen");
         bItems[0].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         bItems[1] = new JMenuItem("Element wiederherstellen");
         bItems[1].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         bItems[2] = new JMenuItem("Element duplizieren");
         bItems[2].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         bItems[3] = new JMenuItem("Element in Home Position");
-        bItems[4] = new JMenuItem("Elementfarbe ändern");
+        bItems[4] = new JMenuItem("Elementfarbe ï¿½ndern");
         
         for(int i = 0; i < bItems.length; i++){
         	if(i == 3)bearbeiten.addSeparator();

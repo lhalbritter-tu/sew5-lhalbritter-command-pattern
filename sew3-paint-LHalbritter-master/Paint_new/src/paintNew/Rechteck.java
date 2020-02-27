@@ -1,4 +1,4 @@
-package paint;
+package paintNew;
 
 import java.awt.*;
 import java.awt.Graphics;
@@ -12,9 +12,9 @@ import java.awt.Graphics;
 public class Rechteck extends Drawable {
 	
 	/**
-	 * Konstruktor für Rechteck
+	 * Konstruktor fï¿½r Rechteck
 	 * 
-	 * @param c die Farbe für das Rechteck
+	 * @param c die Farbe fï¿½r das Rechteck
 	 */
 	public Rechteck(Color c){
 		this.c = c;
@@ -22,7 +22,7 @@ public class Rechteck extends Drawable {
 	}
 	
 	/**
-	 * {@link paint.Element#draw(Graphics g)}
+	 * {@link paintNew.Element#draw(Graphics g)}
 	 */
 	@Override
 	public void draw(Graphics g) {
@@ -35,7 +35,7 @@ public class Rechteck extends Drawable {
 	}
 
 	/**
-	 * {@link paint.Element#clone()}
+	 * {@link paintNew.Element#clone()}
 	 */
 	@Override
 	public Element clone() {
