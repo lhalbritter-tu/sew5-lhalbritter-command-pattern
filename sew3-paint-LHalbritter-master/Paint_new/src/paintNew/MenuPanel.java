@@ -128,7 +128,7 @@ public class MenuPanel extends JPanel {
         	fItems[i].addActionListener(pc);
         }
         
-        about = new JMenuItem("About");
+        about = new InfoCommand("About");
         
         info.add(about);
         about.addActionListener(pc);

@@ -69,6 +69,10 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 		new PaintController();
 	}
 
+	public void openInfoPanel(){
+		pf[1] = new PaintFrame(i, "Informationen", JFrame.DISPOSE_ON_CLOSE);
+	}
+
 	/**
 	 * Methode, die daf�r sorgt, dass alle Aktionen f�r die Men�leiste funktionieren
 	 */
@@ -234,96 +238,6 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// not used
-	}
-	
-	/**
-	 * Methode die das aktuelle Zeichenbrett speichert.
-	 */
-	public void speichern(){ 
-		 
-		 File file = null;
-		 final JFileChooser fc = new JFileChooser();
-		 if(fc.showSaveDialog(pp)==JFileChooser.APPROVE_OPTION)
-			 //File wird aus dem File-Browser ausgesucht
-		 	file = fc.getSelectedFile();
-		 
-		 if (file == null) {
-		 		JOptionPane.showMessageDialog(pf[0], "Die aktuelle Zeichnung" + " wurde nicht gespeichert!");
-		 return;
-		 }
-		 
-		 Drawable[] d = pp.z.getDrawables();
-		 int length = d.length;
-		 int ok = JOptionPane.YES_OPTION;
-		 if (file.exists()) {
-		 		ok = JOptionPane.showConfirmDialog(pf[0], "Soll das File " + "�berschreiben werden`", "Speichern", JOptionPane.YES_NO_OPTION);		
-		 }
-		 if (ok==JOptionPane.YES_OPTION) {
-		 		ObjectOutputStream oos = null;
-		 		try {
-		 			oos = new ObjectOutputStream(new FileOutputStream(file));
-		 			Drawable[] dneu = Arrays.copyOfRange(d,0,length);
-		 
-		 			//Die brauchbaren Daten des Zeichenbretts werden in den OutputStream gespeichert
-		 			oos.writeObject(penColor);
-		 			oos.writeObject(pp.z.getBackground());
-		 
-		 			oos.writeObject(dneu);
-		 
-		 			oos.flush();
-		 			oos.close();
-		 
-		 			JOptionPane.showMessageDialog(pf[0], "Gespeichert!");
-		 		} catch (IOException e) {
-		 			JOptionPane.showMessageDialog(pf[0], e.getMessage());
-		 			e.printStackTrace();
-		 		}
-		 }
-		 
-		 }
-	
-	/**
-	* Methode, die erlaubt, dass man ein File laden kann, welches die entsprechenden Zeichenkomponenten beinhaltet
-	*/
-	public void laden(){
-		 
-		 final JFileChooser fc = new JFileChooser();
-		 File file = null;
-		 if (fc.showOpenDialog(pp)==JFileChooser.APPROVE_OPTION) file = fc.getSelectedFile();
-		 if (file == null) {
-		 		JOptionPane.showMessageDialog(pf[0], "Kein file" + " wurde ausgew�hlt!");
-		 return;
-		 }
-		 ObjectInputStream ois = null;
-		 try {
-			 ois = new ObjectInputStream(new FileInputStream(file));
-		 }catch(IOException e) {
-			 JOptionPane.showMessageDialog(pf[0], e.getMessage());
-			 e.printStackTrace();
-		 }
-		 Drawable[] dneu = null;
-		 Color bg = Color.WHITE;
-		 Color fg = Color.BLACK;
-		 try {
-			 //Die entsprechenden Komponenten werden herausgelesen.
-			 fg = (Color) ois.readObject();
-		 	 bg = (Color) ois.readObject();
-		 	 dneu = (Drawable[]) ois.readObject();
-		 }catch(IOException e) {
-			 JOptionPane.showMessageDialog(pf[0], e.getMessage());
-			 e.printStackTrace();
-		 } catch (ClassNotFoundException e) {
-			 JOptionPane.showMessageDialog(pf[0], e.getMessage());
-			e.printStackTrace();
-		}
-		 int index = dneu.length-1;
-		 for (int i = 0; i < index; i++) {
-			 pp.z.hinzufuegen(dneu[i]);
-		 }
-		 
-		 pp.setForeground(fg);
-		 pp.setBackground(bg);
-		 
 	}
 
 	public MenuPanel getMenuPanel() {
