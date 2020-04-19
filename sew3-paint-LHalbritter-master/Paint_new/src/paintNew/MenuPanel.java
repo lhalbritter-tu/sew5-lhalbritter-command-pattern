@@ -66,23 +66,30 @@ public class MenuPanel extends JPanel {
         // Untermen�elemente hinzuf�gen
         dItems[0] = new NewCommand("Neu");
         dItems[0].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+
         dItems[1] = new LoadCommand("Laden...");
         dItems[1].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+
         dItems[2] = new SaveCommand("Speichern...");
         dItems[2].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+
         for(int i = 0; i < dItems.length; i++){
         	datei.add(dItems[i]);
         	dItems[i].addActionListener(pc);
         }
         
-        bItems[0] = new JMenuItem("Element l�schen");
+        bItems[0] = new DeleteElementCommand("Element löschen");
         bItems[0].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-        bItems[1] = new JMenuItem("Element wiederherstellen");
+
+        bItems[1] = new RestoreElementCommand("Element wiederherstellen");
         bItems[1].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-        bItems[2] = new JMenuItem("Element duplizieren");
+
+        bItems[2] = new DuplicateElementCommand("Element duplizieren");
         bItems[2].setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-        bItems[3] = new JMenuItem("Element in Home Position");
-        bItems[4] = new JMenuItem("Elementfarbe �ndern");
+
+        bItems[3] = new ElementToHomeCommand("Element in Home Position");
+
+        bItems[4] = new ChangeElementColorCommand("Elementfarbe ändern");
         
         for(int i = 0; i < bItems.length; i++){
         	if(i == 3)bearbeiten.addSeparator();
