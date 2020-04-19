@@ -52,15 +52,12 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	private Color backgroundColor = Color.WHITE;
 	private Info i;
 	
-	private boolean ausmalen;
-	
 	/**
 	 * Konstruktor für den Controller
 	 */
 	public PaintController(){
 		pp = new MenuPanel(this);
 		pf[0] = new PaintFrame(pp, "Zeichenbrett", JFrame.EXIT_ON_CLOSE);
-		ausmalen = false;
 		i = new Info();
 	}
 	
@@ -155,15 +152,17 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		switch(m){
-		case LINIEN: d.p.xpoints[1] = e.getX();
-		d.p.ypoints[1] = e.getY();
-		pp.z.punktHinzu(e.getX(), e.getY());
-		break;
-		case VERSCHIEBEN: pp.z.move(e.getX(), e.getY());
-		break;
-		default:
-		pp.z.punktHinzu(e.getX(), e.getY());
-		break;
+			case LINIEN:
+				d.p.xpoints[1] = e.getX();
+				d.p.ypoints[1] = e.getY();
+				pp.z.punktHinzu(e.getX(), e.getY());
+				break;
+			case VERSCHIEBEN:
+				pp.z.move(e.getX(), e.getY());
+				break;
+			default:
+				pp.z.punktHinzu(e.getX(), e.getY());
+				break;
 		}
 	}
 
@@ -197,33 +196,39 @@ public class PaintController implements ActionListener, MouseListener, MouseMoti
 	@Override
 	public void mousePressed(MouseEvent e) {
 		switch(m){
-		case FREIHAND: d = new Freihand(this.penColor);
-		d.p.addPoint(e.getX(), e.getY());
-		pp.z.hinzufuegen(d);
-		break;
-		case LINIEN: d = new Linie(this.penColor);
-		d.p.xpoints[0] = e.getX();
-		d.p.ypoints[0] = e.getY();
-		d.p.xpoints[1] = e.getX();
-		d.p.ypoints[1] = e.getY();
-		pp.z.hinzufuegen(d);
-		break;
-		case RECHTECK: d = new Rechteck(this.penColor);
-		pp.z.hinzufuegen(d);
-		break;
-		case RUNDECK: d = new Rundeck(this.penColor);
-		pp.z.hinzufuegen(d);
-		break;
-		case ELLIPSEN: this.d = new Ellipse(this.penColor);
-		pp.z.hinzufuegen(d);
-		break;
-		case POLYGONE: this.d = new PPolygon(this.penColor);
-		pp.z.hinzufuegen(d);
-		break;
-		default:
-			break;
+			case FREIHAND:
+				d = new Freihand(this.penColor);
+				d.p.addPoint(e.getX(), e.getY());
+				pp.z.hinzufuegen(d);
+				break;
+			case LINIEN:
+				d = new Linie(this.penColor);
+				d.p.xpoints[0] = e.getX();
+				d.p.ypoints[0] = e.getY();
+				d.p.xpoints[1] = e.getX();
+				d.p.ypoints[1] = e.getY();
+				pp.z.hinzufuegen(d);
+				break;
+			case RECHTECK:
+				d = new Rechteck(this.penColor);
+				pp.z.hinzufuegen(d);
+				break;
+			case RUNDECK:
+				d = new Rundeck(this.penColor);
+				pp.z.hinzufuegen(d);
+				break;
+			case ELLIPSEN:
+				this.d = new Ellipse(this.penColor);
+				pp.z.hinzufuegen(d);
+				break;
+			case POLYGONE:
+				this.d = new PPolygon(this.penColor);
+				pp.z.hinzufuegen(d);
+				break;
+			default:
+				break;
 		}	
-		if(ausmalen)pp.z.setFill();
+		if(pp.getAusmalen()) pp.z.setFill();
 	}
 
 	@Override

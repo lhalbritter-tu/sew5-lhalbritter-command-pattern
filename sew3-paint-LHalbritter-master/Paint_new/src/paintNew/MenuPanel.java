@@ -43,7 +43,7 @@ public class MenuPanel extends JPanel {
 		z = new Zeichenbrett();
 		dItems = new JMenuItem[3];
 		bItems = new JMenuItem[5];
-		zItems = new JMenuItem[11];
+		zItems = new JMenuItem[8];
 		fItems = new JMenuItem[2];
 		
         // Men�leiste erzeugen
@@ -98,26 +98,24 @@ public class MenuPanel extends JPanel {
         	bItems[i].setActionCommand("1"+i+"1");
         }
         
-        zItems[0] = new JRadioButtonMenuItem("Freihand zeichnen", true);
-        zItems[1] = new JRadioButtonMenuItem("Linien zeichnen");
-        zItems[2] = new JRadioButtonMenuItem("Rechtecke zeichnen");
-        zItems[3] = new JRadioButtonMenuItem("Rechtecke abger. zeichnen");
-        zItems[4] = new JRadioButtonMenuItem("Ellipsen zeichnen");
-        zItems[5] = new JRadioButtonMenuItem("Polygone zeichnen");
-        zItems[6] = new JRadioButtonMenuItem("Rechtecke ausmalen");
-        zItems[7] = new JRadioButtonMenuItem("Rechtecke abger. ausmalen");
-        zItems[8] = new JRadioButtonMenuItem("Ellipsen ausmalen");
-        zItems[9] = new JRadioButtonMenuItem("Polygone ausmalen");
-        zItems[10] = new JRadioButtonMenuItem("Element Verschieben");
+        zItems[0] = new FreihandCommand("Freihand zeichnen", true);
+        zItems[1] = new LinienCommand("Linien zeichnen");
+        zItems[2] = new RechteckCommand("Rechtecke zeichnen");
+        zItems[3] = new RundeckCommand("Rechtecke abger. zeichnen");
+        zItems[4] = new EllipseCommand("Ellipsen zeichnen");
+        zItems[5] = new PolygonCommand("Polygone zeichnen");
+        zItems[6] = new VerschiebenCommand("Element verschieben");
+
+        zItems[7] = new AusmalenCommand("Ausmalen?", false);
         
         ButtonGroup bt = new ButtonGroup();
         
         for(int i = 0; i < zItems.length; i++){
-        	if(i == 6)zeichnen.addSeparator();
+        	if(i == 7)zeichnen.addSeparator();
         	zeichnen.add(zItems[i]);
         	zItems[i].addActionListener(pc);
         	zItems[i].setActionCommand(""+i);
-        	bt.add(zItems[i]);
+        	if(i < 7) bt.add(zItems[i]);
         }
         
         fItems[0] = new PenColorCommand("Stift");
@@ -142,6 +140,10 @@ public class MenuPanel extends JPanel {
         this.add(z, BorderLayout.CENTER);
         this.add(m, BorderLayout.NORTH);
 	}
+
+	public boolean getAusmalen(){
+	    return ((JCheckBoxMenuItem) this.zItems[7]).getState();
+    }
 	
 	/**
 	 * Setzt die Hintergrundfarbe vom "Hintergrund"-Item
